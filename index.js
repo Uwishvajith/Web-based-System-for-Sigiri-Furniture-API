@@ -49,9 +49,11 @@ const orderRouter = require("./routes/orders.js");
 const orderItemRouter= require("./routes/orderItems.js");
 
 
+
 app.use("/customer",customerRouter);//table name is created at this point
 app.use("/order",orderRouter);
 app.use("/orderItem",orderItemRouter);
+
 
 // PRODUCT_ROUTES
 
@@ -110,6 +112,9 @@ const itemsRouter = require('./routes/items');
 app.use('/inventories', inventoryRouter); // using these files
 app.use('/items', itemsRouter);
 
+//LOGIN ROUTES
+const loginRouter = require("./routes/login.js");
+app.use("/login",loginRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is up and running on port: ${PORT}`)
