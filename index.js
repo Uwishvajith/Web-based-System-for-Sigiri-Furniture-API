@@ -89,9 +89,13 @@ app.use("/Tender", tenderRounter);
 
 const VehicleRouter = require("./routes/vehicles.js");
 const MaintenanceRouter = require("./routes/Maintenances.js");
+const TransportDetailRouter = require("./routes/TransportDetails.js");
+const DriverRouter = require("./routes/Drivers.js")
 
 app.use("/vehicle",VehicleRouter);
 app.use("/Maintenance",MaintenanceRouter);
+app.use("/TransportDetail",TransportDetailRouter);
+app.use("/Driver",DriverRouter);
 
 
 //EMPLOYEE_ROUTES

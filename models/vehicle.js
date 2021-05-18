@@ -6,12 +6,14 @@ const vehicleSchema = new Schema({
 
     VehicleID : {
         type : String,
-        required : true
+        required : true,
+        unique: true
     },
 
     VehicleRegNo : {
         type : String,
-        required : true
+        required : true,
+        unique : true
     },
 
     Date :{
