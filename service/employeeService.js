@@ -4,6 +4,7 @@ const {
   getAllEmployeeRecords,
   updateEmployeeRecord,
   deleteEmployeeRecord,
+  getAllNicRecs,
 } = require("../repository/db");
 const { v4: uuidv4 } = require("uuid");
 
@@ -34,10 +35,15 @@ const deleteEmployee = async (userId) => {
   return await deleteEmployeeRecord(userId);
 };
 
+const getAllNic = async (data) => {
+  return await getAllNicRecs(data);
+};
+
 module.exports = {
   addEmployee,
   getEmployee,
   getAllEmployees,
   updateEmployee,
   deleteEmployee,
+  getAllNic,
 };

@@ -1,11 +1,9 @@
 const router = require("express").Router();
-
 const {
   markAttendance,
   getAttendance,
   getAllAttendance,
-} = require("../service/attendanceService.js");
-
+} = require("../service/attendanceService");
 
 router.post("/user/:id/attendance", async (req, res) => {
   const { id } = req.params;

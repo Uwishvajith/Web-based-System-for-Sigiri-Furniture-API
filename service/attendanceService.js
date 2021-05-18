@@ -3,9 +3,7 @@ const {
   getAttendanceRecords,
   isAttendanceFoundForDate,
   getAllAttendanceRecords,
-} = require("../repository/db.js");
-
-
+} = require("../repository/db");
 const time = require("time-stamp");
 
 const markAttendance = async (id) => {
@@ -13,7 +11,7 @@ const markAttendance = async (id) => {
   if (attendanceRecords.ok && attendanceRecords.data.length === 0) {
     return await createAttendance(id, Date.now(), time());
   }
-  return { ok: true, status: "Updated Successfully" };
+  return { ok: true, status: "attendance marked Successfully" };
 };
 
 const getAttendance = async (id, days = 30) => {

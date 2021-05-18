@@ -5,6 +5,7 @@ const {
   getAllEmployees,
   updateEmployee,
   deleteEmployee,
+  getAllNic,
 } = require("../service/employeeService");
 
 router.post("/employee", async (req, res) => {
@@ -73,6 +74,27 @@ router.get("/employee", async (req, res) => {
   if (response.ok) {
     console.log("done;");
     return res.status(200).send({ status: "Success", data: response.data });
+  }
+  return res.status(500).send({ status: "Internal Server Error" });
+});
+
+//route to send data to empReport
+router.get("/employeeData", async (req, res) => {
+  const { data } = req.query;
+  const response = await getAllEmployees(data);
+  if (response.ok) {
+    console.log("done;");
+    return res.status(200).send(response.data);
+  }
+  return res.status(500).send({ status: "Internal Server Error" });
+});
+
+router.get("/getNic", async (req, res) => {
+  const { data } = req.query;
+  const response = await getAllNic(data);
+  if (response.ok) {
+    console.log("done;");
+    return res.status(200).send({ data: response.data[1]["NIC"] });
   }
   return res.status(500).send({ status: "Internal Server Error" });
 });
