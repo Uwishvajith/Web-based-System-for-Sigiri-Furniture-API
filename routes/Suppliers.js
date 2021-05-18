@@ -10,9 +10,9 @@ router.route("/adds").post((req,res)=>{
     const supplier_name = req.body.supplier_name;
     const organization = req.body.organization;
     const address = req.body.address;
-    const contact_number= req.body.contact_number;
+    const contact_number= Number(req.body.contact_number);
     const email= req.body.email;
-    const fax= req.body.fax;
+    const fax= Number(req.body.fax);
     const credit_limit= Number(req.body.credit_limit);
 
     const newSupplier = new Supplier({
