@@ -28,17 +28,19 @@ const supplierSchema = new Schema({
 
 
     contact_number:{
-        type: String,
+        type: Number,
         required:true
     },
+    
 
     email:{
         type: String,
         required:true
     },
 
+
     fax:{
-        type:String,
+        type:Number,
         required:true
     },
 
@@ -50,7 +52,8 @@ const supplierSchema = new Schema({
 
 })
 
-//all the data assign to mongo db ("promotion") database collection name, it may be simple or capitala but this name save in mongodb in simple letter only and plural promotions
+//all the data assign to mongo db ("supplier") database collection name, it may be simple or capitala but this name save in mongodb in simple letter only and plural suppliers
 const Supplier = mongoose.model("Supplier",supplierSchema);
 
 module.exports=Supplier;
+

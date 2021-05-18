@@ -25,20 +25,20 @@ const productpriceSchema = new Schema({
     },
     discount : {
         type : Number,
-        required : true
+        
     },
     price : {
         type : Number,
-        required : true
+        
     },
     discountprice : {
         type : Number,
-        required : true
+       
         
     },
     newprice : {
         type : Number,
-        required : true
+        
         
     },
     quentity : {
