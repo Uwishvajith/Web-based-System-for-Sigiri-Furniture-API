@@ -10,7 +10,7 @@ const sals = require('../models/salary');
 const router = express.Router();
 
 
-//get the post - read
+//saving the post - create
 router.post('/sals/save',(req,res)=>{
 
     let Sal = new sals(req.body);

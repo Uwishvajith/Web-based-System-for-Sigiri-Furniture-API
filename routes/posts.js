@@ -10,7 +10,7 @@ const posts = require('../models/posts');
 const router = express.Router();
 
 
-//get the post - read
+//saving the post - create
 router.post('/posts/save',(req,res)=>{
 
     let newPost = new posts(req.body);
@@ -28,20 +28,16 @@ router.post('/posts/save',(req,res)=>{
 
 });
 
-//get the post - read
-router.get('/posts',(req,res) =>{//postman giving path is this 
-    posts.find().exec((err,posts) =>{//in post.find p is not capital 
-        if(err){
-           return res.status(400).json({
-               error:err
-           });     
-        }
-        return res.status(200).json({
-            success:true,
-            existingPosts:posts
-        });
-    });
-});
+//retrieve data - get 
+router.route("/posts").get((req,res) => {
+
+    posts.find().then((posts) => {
+        res.json(posts)
+    }).catch((err) => {
+        console.log(err)
+    })
+})
+
 
 
 //updating posts - update

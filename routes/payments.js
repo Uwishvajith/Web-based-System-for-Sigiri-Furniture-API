@@ -28,20 +28,15 @@ router.post('/payments/save',(req,res)=>{
 
 });
 
-//get the post - read
-router.get('/payments',(req,res) =>{//postman giving path is this 
-    payments.find().exec((err,payments) =>{//in post.find p is not capital 
-        if(err){
-           return res.status(400).json({
-               error:err
-           });     
-        }
-        return res.status(200).json({
-            success:true,
-            existingPosts:payments
-        });
-    });
-});
+//retrieve data - get 
+router.route("/payments").get((req,res) => {
+
+    payments.find().then((payments) => {
+        res.json(payments)
+    }).catch((err) => {
+        console.log(err)
+    })
+})
 
 //updating payments - update
 router.put('/payments/update/:id',(req,res) =>{
@@ -60,16 +55,24 @@ router.put('/payments/update/:id',(req,res) =>{
        });
 });
 
-//deleting post - delete
-router.delete('/payments/delete/:id',(req,res) =>{
-    payments.findByIdAndRemove(req.params.id).exec((err,deletedPost) =>{
-        if(err) return res.status(400).json({
-            message:"Delete Unsuccessful",err
-        });
-        return res.json({
-            message:"Delete Successfull",deletedPost
-        });
-    });
-});
+//remove data - delete
+router.route("/payments/delete/:id").delete(async (req,res) => {
+
+    const del = req.params.id ;
+
+await payments.findByIdAndRemove(del,function(error, result) {
+    if (error) {
+        res.status(500).send({status: 'Error 01'});
+    } else {
+        if (result) {
+            res.status(200).send({status: 'Deleted Successfully!'});
+        } else {
+            res.status(500).send({status: 'Delete Faild!'});
+        }
+    }
+})
+})
+
+
 
 module.exports = router;

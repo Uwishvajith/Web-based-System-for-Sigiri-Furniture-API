@@ -1,46 +1,50 @@
-/**This file contains CRUD operation implementation for bills page
+/**This file contains CRUD operation implementation for ledger page
 owned by IT19965550
 Walpola S.R.
 */
 
 
 const express = require('express');
-const bills = require('../models/bills');
+const details = require('../models/ledger');
+
 
 const router = express.Router();
 
 //saving the post - create
-router.post('/bills/save',(req,res)=>{
+router.post('/ledgers/save',(req,res)=>{
 
-    let bill_type = new bills(req.body);
+    let input_type = new details(req.body);
 
-    bill_type.save((err)=>{
+    input_type.save((err)=>{
         if(err){
             return res.status(400).json({
                 error:err
             });
         }
         return res.status(200).json({
-            success:"bill details saved successfully"
+            success:"ledger data details saved successfully"
         });
     });
 
 });
 
 //retrieve data - get 
-router.route("/bills").get((req,res) => {
+router.route("/ledgers").get((req,res) => {
 
-    bills.find().then((bills) => {
-        res.json(bills)
+    details.find().then((details) => {
+        res.json(details)
     }).catch((err) => {
         console.log(err)
     })
 })
 
 
-//updating bills - update
-router.put('/bills/update/:id',(req,res) =>{
-    bills.findByIdAndUpdate(
+
+
+
+//updating details - update
+router.put('/ledgers/update/:id',(req,res) =>{
+    details.findByIdAndUpdate(
         req.params.id,
        {
            $set:req.body
@@ -56,11 +60,11 @@ router.put('/bills/update/:id',(req,res) =>{
 });
 
 //remove data - delete
-router.route("/bills/delete/:id").delete(async (req,res) => {
+router.route("/ledgers/delete/:id").delete(async (req,res) => {
 
         const del = req.params.id ;
 
-    await bills.findByIdAndRemove(del,function(error, result) {
+    await details.findByIdAndRemove(del,function(error, result) {
         if (error) {
             res.status(500).send({status: 'Error 01'});
         } else {
