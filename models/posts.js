@@ -2,9 +2,7 @@
  owned by IT19965550
  Walpola S.R.
  */
-
- const mongoose = require('mongoose');
-
+const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     
 //attrubutes in database
@@ -20,7 +18,6 @@ const postSchema = new mongoose.Schema({
         type:Number,
          required:true
      }
-
  });
 
- module.exports = mongoose.model('income',postSchema);//collection name = first param
+ module.exports = mongoose.model('income',postSchema);
