@@ -1,7 +1,8 @@
+
 const router = require("express").Router();
 let ProductPrice = require("../models/ProductPrice");
 
-//insert data for an unique order
+//insert data
 router.route("/addadd").post((req,res)=>{
 
     const salesid = req.body.salesid;
@@ -30,7 +31,8 @@ router.route("/addadd").post((req,res)=>{
             quentity
     })
 
-    newProductPrice.save().then(()=>{//pass the object to database if successfull
+    //pass the object to database if successfull
+    newProductPrice.save().then(()=>{
          //res.json("product price Added")//from jason format a response sent to front end
         res.json("Product Prices Added")
     }).catch((err)=>{//error or exception handling
@@ -48,6 +50,7 @@ router.route("/getproductprice").get((req,res)=>{
     }).catch((err)=>{
         console.log(err)
     })
+
 })
 
 //update data
@@ -57,22 +60,20 @@ router.route("/updateupdate/:salesid").put(async(req, res)=>{
     const{salesid,productid, category,starting_date,clossing_date, discount,price, discountprice, newprice, quentity} = req.body;
     
     //we have to fetch the new updating details coming from the front end here-new feature called d structure
-
     const updateProductPrice = {//create a object containing the data that needs to be updated
-            salesid,
-            productid,
-            category,
-            starting_date,
-            clossing_date,
-            discount,
-            price,
-            discountprice,
-            newprice,
+            salesid, 
+            productid, 
+            category, 
+            starting_date, 
+            clossing_date, 
+            discount,  
+            price, 
+            discountprice, 
+            newprice, 
             quentity
     }
-
-    //async is waiting for request or promise from await
-    //await must be waiting for all updates are doing(help to async)
+ 
+    //await must be waiting for all updates are doing(help to async)   //async is waiting for request or promise from await
     const updateupdate = await ProductPrice.findOneAndUpdate({salesid:productpriceId}, updateProductPrice).then((productprice)=>{
 
         res.status(200).send({status : "Product Prices updated"})//sending details of the updated data back to front end
@@ -81,7 +82,6 @@ router.route("/updateupdate/:salesid").put(async(req, res)=>{
         console.log(err);
         res.status(500).send({status: "Error with updating data", error:err.message});
     })  
-
 })
 
 //to delete a product prices from database 
@@ -117,6 +117,5 @@ router.route("/searchProductByID/:salesid").get((req,res)=>{
         console.log(err);
     })
 })
-
 module.exports = router;
 

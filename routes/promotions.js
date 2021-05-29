@@ -1,8 +1,9 @@
+
 const router = require("express").Router();
 let Promotion = require("../models/Promotion");
 
 //insert data for an unique order
-router.route("/add").post((req,res)=>{
+router.route("/add").post((req,res)=>{  
 
     const promotionid = req.body.promotionid;
     const productid = req.body.productid;
@@ -14,9 +15,7 @@ router.route("/add").post((req,res)=>{
     const budget = Number(req.body.budget);
     const status = req.body.status;
 
-
     const newPromotion = new Promotion({
-
             promotionid,
             productid,
             category,
@@ -26,50 +25,54 @@ router.route("/add").post((req,res)=>{
             media,
             budget,
             status
+
     })
 
-    newPromotion.save().then(()=>{//pass the object to database if successfull
+    //pass the object to database if successfull
+    newPromotion.save().then(()=>{
          // If insert success
         res.json("Promotion Added")//res.json("promotion Added")//from jason format a response sent to front end
+
     }).catch((err)=>{//error or exception handling
         //If it is unsuccessfull, display error on console
+
         console.log(err);
       res.status(400).send({status:"You can't enter same promotion id",error:err.message});
+      
     })
 
 })
 
 //View data all the promotion details in database
-router.route("/").get((req,res)=>{
+router.route("/").get((req,res)=>{  
     Promotion.find().then((promotions)=>{
         res.json(promotions)
     }).catch((err)=>{
         console.log(err)
     })
+
 })
 
 //update data
-router.route("/update/:promotionid").put(async(req, res)=>{
-    let promoId = req.params.promotionid;//orderId taken from the frontend 
+router.route("/update/:promotionid").put(async(req, res)=>{ 
+    let promoId = req.params.promotionid;//promotionId taken from the frontend 
     //D-structure
     const{promotionid, productid, category, starting_date, clossing_date, description, media, budget, status} = req.body;
     
     //we have to fetch the new updating details coming from the front end here-new feature called d structure
-
     const updatePromotion = {//create a object containing the data that needs to be updated
-        promotionid,
-        productid,
-        category,
-        starting_date,
-        clossing_date,
-        description,
-        media,
-        budget,
+        promotionid, 
+        productid, 
+        category, 
+        starting_date, 
+        clossing_date, 
+        description, 
+        media, 
+        budget, 
         status
     }
 
-    //async is waiting for request or promise from await
-    //await must be waiting for all updates are doing(help to async)
+    //async is waiting for request or promise from await     //await must be waiting for all updates are doing(help to async)
     const update = await Promotion.findOneAndUpdate({promotionid :promoId}, updatePromotion).then((promotion)=>{
 
         res.status(200).send({status : "Promotion updated"})
@@ -81,8 +84,7 @@ router.route("/update/:promotionid").put(async(req, res)=>{
 
 })
 
-//to delete a promotion from database 
-router.route("/delete/:promotionid").delete(async(req,res)=>{
+router.route("/delete/:promotionid").delete(async(req,res)=>{  //to delete a promotion from database 
     let promoId = req.params.promotionid;//promotion id taken from frontend
     await Promotion.findOneAndDelete({promotionid:promoId}).then((promotion)=>{
         res.status(200).send({status : "Promotion deleted"});
@@ -92,8 +94,7 @@ router.route("/delete/:promotionid").delete(async(req,res)=>{
     })
 })
 
-//retieve one record from database
-router.route("/get/:promotionid").get(async (req,res)=>{
+router.route("/get/:promotionid").get(async (req,res)=>{  //retieve one record from database
     let promoId = req.params.promotionid;
     const promo = await Promotion.findOne({promotionid:promoId}).then((promotion)=>{
         res.status(200).send({promotions : promotion})
@@ -103,8 +104,7 @@ router.route("/get/:promotionid").get(async (req,res)=>{
     })
 })
 
-//this will serach for the sales id by a particular product price given at searchbox
-router.route("/searchPromotionByID/:promotionid").get((req,res)=>{
+router.route("/searchPromotionByID/:promotionid").get((req,res)=>{   //this will serach for the promotion id by a particular promotion given at searchbox
     let proid = req.params.promotionid.trim();
 
     //{$regex: "^" + val + ".*"}this will get to the value starting at the begining of list 

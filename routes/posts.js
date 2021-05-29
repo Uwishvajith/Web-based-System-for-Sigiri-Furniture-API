@@ -2,13 +2,9 @@
 owned by IT19965550
 Walpola S.R.
 */
-
-
 const express = require('express');
 const posts = require('../models/posts');
-
 const router = express.Router();
-
 
 //saving the post - create
 router.post('/posts/save',(req,res)=>{
@@ -25,7 +21,6 @@ router.post('/posts/save',(req,res)=>{
             success:"Posts saved successfully"
         });
     });
-
 });
 
 //retrieve data - get 
@@ -37,8 +32,6 @@ router.route("/posts").get((req,res) => {
         console.log(err)
     })
 })
-
-
 
 //updating posts - update
 router.put('/posts/update/:id',(req,res) =>{
@@ -57,7 +50,6 @@ router.put('/posts/update/:id',(req,res) =>{
        });
 });
 
-
 //deleting post - delete
 router.delete('/posts/delete/:id',(req,res) =>{
     posts.findByIdAndRemove(req.params.id).exec((err,deletedPost) =>{
@@ -69,7 +61,5 @@ router.delete('/posts/delete/:id',(req,res) =>{
         });
     });
 });
-
-
 
 module.exports = router;

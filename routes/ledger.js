@@ -2,12 +2,8 @@
 owned by IT19965550
 Walpola S.R.
 */
-
-
 const express = require('express');
 const details = require('../models/ledger');
-
-
 const router = express.Router();
 
 //saving the post - create
@@ -25,7 +21,6 @@ router.post('/ledgers/save',(req,res)=>{
             success:"ledger data details saved successfully"
         });
     });
-
 });
 
 //retrieve data - get 
@@ -37,10 +32,6 @@ router.route("/ledgers").get((req,res) => {
         console.log(err)
     })
 })
-
-
-
-
 
 //updating details - update
 router.put('/ledgers/update/:id',(req,res) =>{
@@ -76,6 +67,5 @@ router.route("/ledgers/delete/:id").delete(async (req,res) => {
         }
     })
 })
-
 
 module.exports = router;

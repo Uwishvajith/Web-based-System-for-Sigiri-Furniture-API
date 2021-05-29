@@ -2,14 +2,14 @@ const router = require("express").Router();
 const Employee = require("../models/Driver");
 
 
-//view data
+//View All Drivers data 
 
 
 
 router.route("/viewD").get(async(req,res)=>{
         const s = 'Driver'
         const regex = new RegExp(s, 'i') // i for case insensitive
-        Employee.find({Designation: {$regex: regex}})
+        Employee.find({Designation: {$regex: regex}})//find by designation = Driver
     .then((Drivers)=>{
         res.json({Drivers})
     }).catch(()=>{
