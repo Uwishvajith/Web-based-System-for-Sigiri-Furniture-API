@@ -17,11 +17,7 @@ router.route("/delete/:productId").delete(async (req,res) => {
         if (error) {
             res.status(500).send({status: 'Delete Faild!'});
         } else {
-            if (result) {
-                res.status(200).send({status: 'Deleted Successfully!'});
-            } else {
-                res.status(500).send({status: 'Delete Faild!'});
-            }
+            res.status(200).send({status: 'Product Deleted Successfully!'});
         }
     })
 })
