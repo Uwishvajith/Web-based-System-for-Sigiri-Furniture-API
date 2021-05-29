@@ -31,7 +31,7 @@ router.route("/add").post((req,res)=>{
 
 })
 
-//view data
+//view data vehicle
 router.route("/").get((req,res)=>{
         Vehicle.find().then((Vehicles)=>{
                 res.json(Vehicles)
@@ -41,7 +41,7 @@ router.route("/").get((req,res)=>{
 })
 
 
-//update
+//update vehicle
 router.route("/update/:id").put(async(req,res)=>{
 
     let userId = req.params.id;
@@ -65,7 +65,7 @@ router.route("/update/:id").put(async(req,res)=>{
 })
 
 
-//delete
+//delete vehicle
 router.route("/delete/:id").delete(async(req,res)=>{
 
     let userId = req.params.id;
