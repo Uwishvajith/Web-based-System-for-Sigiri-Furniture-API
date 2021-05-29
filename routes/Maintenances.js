@@ -45,5 +45,20 @@ router.route("/viewM").get((req,res)=>{
     })
 })
 
+//delete Maintenance data
+router.route("/deleteM/:id").delete(async(req,res)=>{
+
+    let userId = req.params.id;
+
+    await Maintenance.findByIdAndDelete(userId).then(()=>{
+        res.status(200).send({status: "Maintenace Details deleted"})
+        
+        }).catch((errr)=>{
+            console.log(err.message);
+            res.status(500).send({status: "Error with delete"});
+    })
+})
+
+
 
 module.exports = router;

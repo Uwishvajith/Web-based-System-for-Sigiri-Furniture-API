@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const MaintenanceSchema = new Schema({
+const TransportDetailSchema = new Schema({
 
-    MaintainID : {
+    TransportID : {
         type : String,
         required : true,
         unique: true
@@ -20,18 +20,24 @@ const MaintenanceSchema = new Schema({
         required:true
     },
 
+    DriverName : {
+        type :String,
+        required : true
+    },
+
     Discription :{
         type: String,
         required :true
     },
 
-    Cost :{
+    Status :{
         type : String,
         required : true
     }
 
 })
 
-const Maintenance = mongoose.model("Maintenance",MaintenanceSchema);
+const TransportDetail = mongoose.model("TransportDetail",TransportDetailSchema);
 
-module.exports = Maintenance;
+module.exports = TransportDetail;
+
