@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-let Product = require("../Models/product");
+let Product = require("../models/product");
 
 http://localhost:8060/products/add
 
