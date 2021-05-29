@@ -66,7 +66,7 @@ router.route("/updateT/:id").put(async(req,res)=>{
         res.status(200).send({status: "Transport Details Updated"})
     }).catch((err)=>{
         console.log(err);
-        res.status(500).send({status : "Errror with updating data"})
+        res.status(500).send({status : "Error with updating data"})
     })
 
     
@@ -79,7 +79,7 @@ router.route("/deleteT/:id").delete(async(req,res)=>{
     let userId = req.params.id;
 
     await TransportDetail.findByIdAndDelete(userId).then(()=>{
-        res.status(200).send({status: "Transport Deyail deleted"})
+        res.status(200).send({status: "Transport Detail deleted"})
         
         }).catch((errr)=>{
             console.log(err.message);

@@ -2,16 +2,16 @@ const router = require("express").Router();
 const Employee = require("../models/Driver");
 
 
-//view data
+//View All Drivers data 
 
 
 
 router.route("/viewD").get(async(req,res)=>{
-        const s = 'employee management'
+        const s = 'Driver'
         const regex = new RegExp(s, 'i') // i for case insensitive
-        Employee.find({Designation: {$regex: regex}})
+        Employee.find({Designation: {$regex: regex}})//find by designation = Driver
     .then((Drivers)=>{
-        res.status("200").send({status: "Data Fetched", Drivers})
+        res.json({Drivers})
     }).catch(()=>{
         console.log(err.message);
         res.status(500).send({status:"Error with data", error: err.message});
