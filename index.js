@@ -34,12 +34,14 @@ const postRoutes = require("./routes/posts.js");
 const billRoutes = require("./routes/bills.js");
 const payment = require("./routes/payments.js");
 const salary = require("./routes/salary.js");
+const ledger = require("./routes/ledger.js");
 
 
 app.use(postRoutes);
 app.use(billRoutes);
 app.use(payment);
 app.use(salary);
+app.use(ledger);
 
 
 // ORDER_ROUTES

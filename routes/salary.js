@@ -1,16 +1,12 @@
-/**This file contains CRUD operation implementation for dailyincome page
+/**This file contains CRUD operation implementation for salary page
 owned by IT19965550
 Walpola S.R.
 */
-
-
 const express = require('express');
 const sals = require('../models/salary');
-
 const router = express.Router();
 
-
-//get the post - read
+//saving the post - create
 router.post('/sals/save',(req,res)=>{
 
     let Sal = new sals(req.body);
@@ -25,12 +21,11 @@ router.post('/sals/save',(req,res)=>{
             success:"Salary saved successfully"
         });
     });
-
 });
 
 //get the post - read
-router.get('/sals',(req,res) =>{//postman giving path is this 
-    sals.find().exec((err,sals) =>{//in post.find p is not capital 
+router.get('/sals',(req,res) =>{
+    sals.find().exec((err,sals) =>{
         if(err){
            return res.status(400).json({
                error:err
@@ -61,7 +56,6 @@ router.put('/sals/update/:id',(req,res) =>{
        });
 });
 
-
 //deleting post - delete
 router.delete('/sals/delete/:id',(req,res) =>{
     sals.findByIdAndRemove(req.params.id).exec((err,deletedPost) =>{
@@ -73,7 +67,5 @@ router.delete('/sals/delete/:id',(req,res) =>{
         });
     });
 });
-
-
 
 module.exports = router;
