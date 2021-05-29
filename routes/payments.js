@@ -2,12 +2,8 @@
 owned by IT19965550
 Walpola S.R.
 */
-
-
 const express = require('express');
 const payments = require('../models/payments');
-
-
 const router = express.Router();
 
 //saving the post - create
@@ -25,7 +21,6 @@ router.post('/payments/save',(req,res)=>{
             success:"payment details saved successfully"
         });
     });
-
 });
 
 //retrieve data - get 
@@ -72,7 +67,5 @@ await payments.findByIdAndRemove(del,function(error, result) {
     }
 })
 })
-
-
 
 module.exports = router;

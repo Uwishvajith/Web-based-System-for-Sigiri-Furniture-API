@@ -45,7 +45,7 @@ router.route("/viewM").get((req,res)=>{
     })
 })
 
-//delete Transport data
+//delete Maintenance data
 router.route("/deleteM/:id").delete(async(req,res)=>{
 
     let userId = req.params.id;

@@ -49,7 +49,7 @@ const productpriceSchema = new Schema({
 
 })
 
-//all the data assign to mongo db ("promotion") database collection name, it may be simple or capitala but this name save in mongodb in simple letter only and plural promotions
+//all the data assign to mongo db ("product priceP") database collection name, it may be simple or capitala but this name save in mongodb in simple letter only and plural promotions
 const ProductPrice = mongoose.model("ProductPrice", productpriceSchema);
 
 module.exports = ProductPrice;
