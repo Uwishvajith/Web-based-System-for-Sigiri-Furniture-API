@@ -26,12 +26,12 @@ router.route("/add").post((req,res) => {
     //save product data to the database and show success or unsuccess message
     newProduct.save(function(error, result) {
         if (error) {
-            res.status(500).send({status: 'Product not Added!', error: error.message});
+            res.status(500).send({status: 'Product ID Duplicated!', error: error.message});
         } else {
             if (result) {
                 res.status(200).send({status: 'New product added Successfully!'});
             } else {
-                res.status(500).send({status: 'Product not Added!'});
+                res.status(500).send({status: 'Product ID Duplicated!'});
             }
         }
     });
