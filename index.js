@@ -123,6 +123,6 @@ const loginRouter = require("./routes/login.js");
 app.use("/login",loginRouter);
 
 app.listen(PORT, () => {
-    console.log(`Server is up and running on port: `)
+    console.log(`Server is up and running on port: ${PORT}`)
 });
 
