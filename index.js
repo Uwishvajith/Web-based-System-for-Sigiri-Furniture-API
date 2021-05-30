@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const app = express();
 require("dotenv").config();
 
-// const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -122,6 +122,7 @@ app.use('/items', itemsRouter);
 const loginRouter = require("./routes/login.js");
 app.use("/login",loginRouter);
 
-    console.log(`Server is up and running on port: 5462`)
-
+app.listen(PORT, () => {
+    console.log(`Server is up and running on port: `)
+});
 
